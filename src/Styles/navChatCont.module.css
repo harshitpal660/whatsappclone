@@ -10,8 +10,8 @@
 
 .dp{
     overflow: hidden;
-   height: 49px;
-   width: 49px;
+   height: 38.9px;
+   width: 38.9px;
    border-radius: 50%;
   }
 .dp img{
@@ -19,3 +19,7 @@
     width: 100%;
 }
   
+.typing{
+    font-size: 13px;
+    text-align: left;
+}

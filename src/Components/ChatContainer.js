@@ -7,7 +7,7 @@ export const ChatContainer = () => {
 
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-full overflow-auto ">
       {contactsDummyData.map((item) => (
         <ChatSlice contact={item}/>
       ))}

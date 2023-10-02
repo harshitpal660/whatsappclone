@@ -1,0 +1,16 @@
+.typing{
+    display: flex;
+    flex-direction: row;
+    background-color:#202c33;
+    padding: 0.6rem;
+    /* flex: 1; */
+}
+
+.message{
+    background-color: #2a3942;
+    border-radius: 8px;
+    flex: 1;
+    color: #8696a0;
+    padding-left: 1rem;
+    outline: none;
+}

@@ -46,6 +46,7 @@
 
 .preview{
     flex: 1;
+    width: fit-content;
     /* flex-grow: inherit; */
     /* overflow: hidden; */
 

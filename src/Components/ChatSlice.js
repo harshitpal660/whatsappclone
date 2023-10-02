@@ -2,7 +2,7 @@ import styles from "../Styles/chatslice.module.css";
 import { useDispatch } from "react-redux";
 
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { contactClicked } from "../Reducer/chatContainer";
+import { contactClicked } from "../Reducer/chatContainerReducer";
 export const ChatSlice = ({contact}) => {
 
   const dispatch = useDispatch();

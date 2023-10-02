@@ -9,7 +9,11 @@ import {
   VideoCall,
 } from "./iconstorage";
 import styles from "../Styles/navChatCont.module.css";
+import { useSelector } from "react-redux";
 export const NavChatWind = ({chatopen}) => {
+
+  const loading = useSelector((state)=>state.loading);
+
   return (
     <div className={styles.contactOptionNav}>
       <div className="flex flex-row w-full justify-between">
@@ -19,7 +23,7 @@ export const NavChatWind = ({chatopen}) => {
               <img src={chatopen.profilePic}></img>
             )}
           </div>
-          <div className="ml-4 mt-2">{chatopen.name}</div>
+          <div className={`ml-4 ${!loading && "mt-2"} flex flex-col h-4`}><div>{chatopen.name}</div> {loading && <div className={styles.typing}>typing...</div>}</div>
         </div>
 
         <div className="flex flex-row mr-4">
