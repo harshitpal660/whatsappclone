@@ -1,0 +1,65 @@
+
+/* this is a div wrapper which wrap top components eg. searchicon, input box, filter */
+.top{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+/* div wrapper which wrap input tag */
+.searchBar{
+    flex: 0.9;
+    border-top-right-radius: 10px; 
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+}
+
+/* input box to search contacts */
+.inputTag{
+    padding: 5px;
+    background-color: #202c33;
+    width:100%;
+    padding-left: 1.5rem;
+    color: #aebac1;
+    font-size: 15px;
+    height: 35px;
+}
+
+/* search icon  */
+.searchIcon{
+    background-color: #202c33;
+    padding: 5px;
+    border-top-left-radius: 10px; 
+    border-bottom-left-radius: 10px;
+}
+
+/* unread filter to sort unread messages */
+.unreadFilter{
+    padding: 5px;
+    padding-left: 10px;
+}
+
+
+/* this is a div wrapper which wrap bottom components eg. archive, headinh, count */
+
+.bottom{
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+.archive{
+    padding: 2px;
+}
+.heading{
+    flex: 0.9;
+    padding-left: 1rem;
+    font-size: 17px;
+}
+
+.archiveCount{
+    font-size: 12px;
+    padding-right: 1rem;
+    color: #00a884;
+    padding: 2px;
+}
