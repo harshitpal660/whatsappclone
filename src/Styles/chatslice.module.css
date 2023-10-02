@@ -1,0 +1,135 @@
+.slice {
+  height: 4.5rem;
+  cursor: pointer;
+}
+ .slice:hover{
+  background-color: #222e35;
+ }
+
+.profilePicdiv {
+  height: 73px;
+  width: 77px;
+  padding: 13px 15px 0 13px;
+}
+.profilePicWrapper {
+  height: 49px;
+  width: 49px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profilePicWrapper img{
+  height: 100%;
+  width: 100%;
+}
+
+.name {
+  border-top: 1px solid #222d34;
+  border-bottom: 1px solid #222d34;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title p {
+  text-overflow: ellipsis;
+  width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.time{
+    flex: 1;
+    text-align: right;
+    margin-right: 1rem;
+}
+
+.preview{
+    flex: 1;
+    width: fit-content;
+    /* flex-grow: inherit; */
+    /* overflow: hidden; */
+
+}
+
+@media only screen and (max-width: 1600px){
+    .preview p {
+        text-overflow: ellipsis;
+        width: 350px;
+        /* width: 23vw; */
+        min-width: 23vw;
+        color: #8696a0;
+        font-size: 14px;
+        overflow: hidden;
+          white-space: nowrap;
+      }
+}
+
+@media only screen and (max-width: 914px){
+    .preview p {
+        text-overflow: ellipsis;
+        /* width: 212px; */
+        width: 37vw;
+        color: #8696a0;
+        /* max-width: 23vw; */
+        font-size: 14px;
+        overflow: hidden;
+          white-space: nowrap;
+      }
+}
+@media only screen and (max-width: 850px){
+    .preview p {
+        text-overflow: ellipsis;
+        /* width: 212px; */
+        width: 31vw;
+        font-size: 14px;
+        color: #8696a0;
+        /* max-width: 23vw; */
+        overflow: hidden;
+          white-space: nowrap;
+      }
+}
+@media only screen and (max-width: 785px){
+    .preview p {
+        text-overflow: ellipsis;
+        /* width: 212px; */
+        width: 25vw;
+        font-size: 14px;
+        color: #8696a0;
+        /* max-width: 23vw; */
+        overflow: hidden;
+          white-space: nowrap;
+      }
+}
+@media only screen and (max-width: 730px){
+    .preview p {
+        text-overflow: ellipsis;
+        /* width: 212px; */
+        width: 23vw;
+        min-width: 200px;
+        font-size: 14px;
+        color: #8696a0;
+        /* max-width: 23vw; */
+        overflow: hidden;
+          white-space: nowrap;
+      }
+}
+.messageCount{
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    padding-right: 1rem;
+}
+.messageCount p{
+    height: 20px;
+    width: fit-content;
+    border-radius: 10px;
+    text-align: center;
+    /* padding-left: 2px; */
+    color: black;
+    background-color: #00a884;
+    /* height: 15px; */
+    font-size: small;
+    min-width: 20px;
+}

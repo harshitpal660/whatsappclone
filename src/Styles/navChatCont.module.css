@@ -1,0 +1,25 @@
+.contactOptionNav{
+    background-color: #202c33;
+    height: 59px;
+    padding: 10px 16px;
+    text-align: center;
+}
+.demo{
+    height: 40px;
+}
+
+.dp{
+    overflow: hidden;
+   height: 38.9px;
+   width: 38.9px;
+   border-radius: 50%;
+  }
+.dp img{
+    height: 100%;
+    width: 100%;
+}
+  
+.typing{
+    font-size: 13px;
+    text-align: left;
+}
