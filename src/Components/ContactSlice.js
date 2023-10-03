@@ -2,15 +2,27 @@ import styles from "../Styles/chatslice.module.css";
 import { useDispatch } from "react-redux";
 
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { contactClicked } from "../Reducer/chatContainerReducer";
-export const ChatSlice = ({contact}) => {
-
+import { setContactClicked } from "../Reducer/chatContainerReducer";
+import { addChats,setCurrUserChats } from "../Reducer/chatWindowReducer";
+// this is a single contact slice on which we click to chat with that person
+export const ContactSlice = ({contact}) => {
+  const chats = useSelector((state)=>state.chats);
   const dispatch = useDispatch();
 
 
   const handleContactClick=(contact)=>{
     console.log(contact);
-    dispatch(contactClicked(contact))
+    
+    if(Object.keys(chats).length===0 || !chats.hasOwnProperty(contact.id)){
+      const currChats = {};
+      currChats["chats"] = {};
+      currChats["id"] = contact.id;
+      dispatch(addChats(currChats))
+      dispatch(setCurrUserChats({}));
+      dispatch(setContactClicked(contact))
+      return;
+    }
+    dispatch(setCurrUserChats(chats[contact.id]));
   }
   return (
     <div className={`${styles.slice} w-full flex flex-row`} onClick={()=>handleContactClick(contact)}>

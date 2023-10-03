@@ -8,6 +8,8 @@ import {
   Communities,
 } from "./iconstorage";
 import styles from "../Styles/navChatCont.module.css";
+
+// this is a navbar of chat constainer which is present in left hand side of app 
 export const NavChatCont = () => {
   return (
     <div className={styles.contactOptionNav}>

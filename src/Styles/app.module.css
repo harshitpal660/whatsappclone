@@ -19,7 +19,9 @@
 .leftView {
   width: 32rem;
   /* min-height: 60rem; */
-  overflow: hidden;
+  /* overflow-y: hidden; */
+  overflow: visible;
+
   padding-bottom: 2rem;
 }
 

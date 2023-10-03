@@ -1,3 +1,6 @@
+
+
+// This is a dummy data that we will use to render our contacts in web page
 export const contactsDummyData = [
   {
     name: "Kapil Sharma",

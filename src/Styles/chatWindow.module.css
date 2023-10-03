@@ -1,6 +1,46 @@
 .chatWindow {
   background-color: #222e35;
 }
+.chatWrapper > *:nth-child(even){
+  justify-content:flex-start; 
+}
+.chatWrapper > *:nth-child(odd){
+  justify-content: flex-end; 
+}
+
+.chatWrapper > *:nth-child(even) .message{
+  color:#d1d6d8;
+  background-color: #1d282f;
+  border-radius: 8px;
+  text-align:left;
+  padding: 8px;
+}
+
+.chatWrapper > *:nth-child(odd) .message{
+  color:#d1d6d8;
+  background-color: #005c4b;
+  border-radius: 8px;
+  text-align:left;
+  padding: 8px;
+}
+
+@media only screen and (min-width: 0px) {
+  .chatWrapper > *:nth-child(odd) .message{
+    
+    margin: 3px 20px 20px 50px;
+  }
+  .chatWrapper > *:nth-child(even) .message{
+    
+    margin: 0px 50px 20px 20px;
+  }
+}
+@media only screen and (min-width: 1300px) {
+  .chatWrapper > *:nth-child(odd) .message{
+    
+    margin: 3px 70px 20px 0px;
+  }
+}
+
 
 .flexdiv {
   display: flex;

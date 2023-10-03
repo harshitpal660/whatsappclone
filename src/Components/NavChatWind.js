@@ -10,6 +10,9 @@ import {
 } from "./iconstorage";
 import styles from "../Styles/navChatCont.module.css";
 import { useSelector } from "react-redux";
+
+
+// this is a navbar of chat window which is present in right hand side of app it contains video call, search and menu options
 export const NavChatWind = ({chatopen}) => {
 
   const loading = useSelector((state)=>state.loading);
