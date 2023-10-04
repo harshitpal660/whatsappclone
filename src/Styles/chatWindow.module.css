@@ -1,6 +1,7 @@
 .chatWindow {
   background-color: #222e35;
 }
+<<<<<<< HEAD
 .chatWrapper > *:nth-child(even){
   justify-content:flex-start; 
 }
@@ -41,6 +42,8 @@
   }
 }
 
+=======
+>>>>>>> 95062343dbe4c0417e964b6537990a5e00bdb433
 
 .flexdiv {
   display: flex;
