@@ -18,6 +18,8 @@ code {
 }
 
 
+
+/* customization in scroll bar making it thin */
 *::-webkit-scrollbar {
  height: 6px;
  width: 6px;

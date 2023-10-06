@@ -1,5 +1,5 @@
 import { UnreadFilter,Archives,SearchIcon } from "./iconstorage"
-import styles from "../Styles//searchBar.module.css"
+import styles from "../Styles/searchBar.module.css"
 
 // this a search bar where we search different chat options or contacts
 export const SearchBar=()=>{
@@ -23,7 +23,7 @@ export const SearchBar=()=>{
                         <p>Archived</p>
                     </div>
                     <div className={styles.archiveCount}>
-                        <p>11</p>
+                        <p>0</p>
                     </div>
                 </div>
             </div>

@@ -2,18 +2,14 @@
 
 import {createSlice} from "@reduxjs/toolkit"
 
-// creating local storage for storing some persistent data in future
-const localStorageKey = "myFavourites";
-// localStorage.removeItem(localStorageKey)
-if(!localStorage.getItem(localStorageKey)){
-  localStorage.setItem(localStorageKey, JSON.stringify({}));
-}
 
 
 const initialState = {
-    contacts:{},
+    // contacts:{},
     contactClicked:{},
-    preview:"",
+    newChatContainer:[],
+    showNewChat:false,
+    // preview:"",
   };
   
   export const contactClickedSlice = createSlice({
@@ -26,4 +22,26 @@ const initialState = {
     },
   });
 
+  export const newChatContainerSlice = createSlice({
+    name: "newChatContainer",
+    initialState: initialState.newChatContainer,
+    reducers: {
+      setnewChatContainer: (state, action) => {
+        return action.payload;
+      },
+    },
+  });
+
+  export const showNewChatSlice = createSlice({
+    name: "showNewChat",
+    initialState: initialState.showNewChat,
+    reducers: {
+      setShowNewChat: (state, action) => {
+        return action.payload;
+      },
+    },
+  });
+
   export const {setContactClicked} = contactClickedSlice.actions;
+  export const {setnewChatContainer} = newChatContainerSlice.actions;
+  export const {setShowNewChat} = showNewChatSlice.actions;

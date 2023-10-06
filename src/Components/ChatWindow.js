@@ -6,30 +6,48 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import { TrypingArea } from "./TypingArea";
 
 import { SendersTextMessage } from "./Chat/MessageBox";
-
+import { useEffect } from "react";
 
 // this is a chat window of our app present in right hand side where we chat
 export const ChatWindow = () => {
-  const chatopen = useSelector((state) => state.contactClicked);
-  const keys = Object.keys(chatopen).length;
+  // user details which we click for chatting
+  const user = useSelector((state) => state.contactClicked);
+  const keysOfUser = Object.keys(user).length;
+  const chatsOfCurrentUser = useSelector((state) => state.chatofCurrentContact);
 
+  // delete chatsOfCurrentUser.undefined
+
+  // console.log(chatsOfCurrentUser);
+
+  const keysOfCurrChat = Object.keys(chatsOfCurrentUser);
+  // if(keysOfCurrChat.hasOwnProperty(undefined)){
+  //   delete keysOfCurrChat.undefined
+  // }
+  console.log(chatsOfCurrentUser, chatsOfCurrentUser.length);
+  useEffect(() => {
+    console.log("inside chat window");
+  }, [chatsOfCurrentUser]);
 
   return (
     <>
-      {keys !== 0 && (
+      {keysOfUser !== 0 && (
         <>
-          <NavChatWind chatopen={chatopen} />
-          <div className={`flex-1 flex flex-col justify-end ${styles.chatWrapper}`}>
-            {/* <SendersTextMessage/> */}
-            {/* <div className={`flex flex-row`}>
-              <div className={`h-fit w-fit max-w-lg ${styles.message}`}>Response checking ghfbdhfvbdvhjdbnvhj fudh fidg hidug fdfgchgfcghfcjgfcgfxhfdcjv hjvhgvhgcvghfcjhc yf hfcj hf hjhfjhgfvhgvhjgc fhg hjgvj hgvh m</div>
-            </div> */}
-            
+          <NavChatWind chatopen={user} />
+          <div
+            className={`h-full ${styles.chatWrapper}`}
+          >
+           {keysOfCurrChat !=0 && <div className={styles.chatContainer}>
+            {chatsOfCurrentUser.length > 0 &&
+              chatsOfCurrentUser.map((item) => {
+                return <SendersTextMessage item={item} name={item.name} />;
+              })}
+          </div>}
+
           </div>
           <TrypingArea />
         </>
       )}
-      {keys === 0 && (
+      {keysOfUser === 0 && (
         <div className={`${styles.chatWindow} h-full overflow-y-scroll`}>
           <div className={styles.flexdiv}>
             <div className={styles.defaultImgWrapper}>
