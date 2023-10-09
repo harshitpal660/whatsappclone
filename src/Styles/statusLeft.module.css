@@ -1,0 +1,86 @@
+
+/* Status Page */
+@media only screen and (min-width: 1300px){
+    .status{
+        padding: 1rem 2rem 1rem 2rem;
+    }
+}
+
+.leftTop{
+    border-bottom: 1px solid #474d53;
+}
+
+/* Status Page Left  */
+
+
+.left{
+    width: 25vw;
+    min-width: 15rem;
+    background-color: #1e262c;
+
+}
+
+/* Status Page  Right */
+
+.right{
+    background-color: #0b141a;
+    min-width: 30rem;
+    overflow-x: scroll;
+}
+
+
+.noUpdates{
+    color: #6a7175;
+    font-size: 10px;
+
+}
+
+.MyStatusText{
+    font-size: 15px;
+}
+
+.recentHeading{
+    color: #b9bdbf;
+    font-size: 13px;
+}
+
+/* status preview */
+
+.imageWraper{
+    height: 3rem;
+    width: 3rem;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #474d53;
+}
+
+.imageWraper img{
+    height: 100%;
+    width: 100%;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 1rem;
+}
+
+.statusScrolldiv{
+    max-height: 70vh;
+    height: fit-content;
+}
+.statusScrolldiv::-webkit-scrollbar{
+    display: none;
+}
+
+/* encrypted msg */
+
+.encryptedMsg{
+    font-size: 12px;
+    color: #7f8489;
+}
+
+.encryptedMsgSpc{
+    color: #53bdeb;
+}

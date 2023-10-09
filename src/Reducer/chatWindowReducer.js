@@ -43,21 +43,32 @@ export const chatsSlice = createSlice({
       const currChats = action.payload;  // {chats:{},id:1,name:""}
       console.log(currChats);
       const newChat = state;
-      newChat.push(currChats);
+      // const newChat = JSON.parse(localStorage.getItem(localStorageKey));
+      console.log(newChat);
+      newChat.unshift(currChats)
+      // newChat.push(currChats);
+      localStorage.setItem(localStorageKey,JSON.stringify(newChat));
       return newChat;
+
     },
     updateChats:(state, action)=>{
-      const currChats = action.payload; // {name:"",data:"",id:""}
+      const currChats = action.payload; // {name:"",data:"",id:"",date:"",time:"",month:"",year:""}
       console.log(currChats);
       const currState = state;
+      // const currState = JSON.parse(localStorage.getItem(localStorageKey));
+      console.log(currState);
       const newObj = {}  // creating this object to push it into chats
       newObj[currChats.name] = currChats.data;
+      newObj["time"] = currChats.time;
+      newObj["date"] = currChats.date;
+      newObj["month"] = currChats.month;
+      newObj["year"] = currChats.year;
       currState.forEach(item=>{
         if(item.id===currChats.id){
           item.chats.push(newObj)
         }
       })
-
+      localStorage.setItem(localStorageKey,JSON.stringify(currState));
       return currState;
     }
   },
@@ -68,12 +79,16 @@ export const currUserChatsSlice = createSlice({
   initialState: initialState.chatofCurrentContact,
   reducers: {
     addCurrUserChats: (state, action) => {
-      const currChats = action.payload;  //{data:"",id:"",name:""}
+      const currChats = action.payload;  //{name:"",data:"",id:"",date:"",time:"",month:"",year:""}
       console.log(currChats);
       const newChat = {}
         newChat[currChats.name] = currChats.data;
         newChat["name"] = currChats.name;
-        newChat["id"] = currChats.id
+        newChat["id"] = currChats.id;
+        newChat["time"] = currChats.time;
+        newChat["date"] = currChats.date;
+        newChat["month"] = currChats.month;
+        newChat["year"] = currChats.year;
         console.log(newChat);     //{user:"",id:"",name:""}
         state.push(newChat);
       // return currChats;

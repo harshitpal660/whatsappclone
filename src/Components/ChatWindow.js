@@ -15,14 +15,10 @@ export const ChatWindow = () => {
   const keysOfUser = Object.keys(user).length;
   const chatsOfCurrentUser = useSelector((state) => state.chatofCurrentContact);
 
-  // delete chatsOfCurrentUser.undefined
-
-  // console.log(chatsOfCurrentUser);
+  // [today,tommorow,yesterday]  tags for chats which fall in category of currday-chatday
 
   const keysOfCurrChat = Object.keys(chatsOfCurrentUser);
-  // if(keysOfCurrChat.hasOwnProperty(undefined)){
-  //   delete keysOfCurrChat.undefined
-  // }
+
   console.log(chatsOfCurrentUser, chatsOfCurrentUser.length);
   useEffect(() => {
     console.log("inside chat window");
@@ -39,7 +35,7 @@ export const ChatWindow = () => {
            {keysOfCurrChat !=0 && <div className={styles.chatContainer}>
             {chatsOfCurrentUser.length > 0 &&
               chatsOfCurrentUser.map((item) => {
-                return <SendersTextMessage item={item} name={item.name} />;
+                return <SendersTextMessage item={item} />;
               })}
           </div>}
 

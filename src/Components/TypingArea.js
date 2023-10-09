@@ -1,14 +1,18 @@
 import { Mike, Emoji, Plus, Send } from "./iconstorage";
 import styles from "../Styles/typing.module.css";
 import OpenAI from "openai";
-import { setContactClicked } from "../Reducer/chatContainerReducer";
-import { isTyping,isLoading,addCurrUserChats } from "../Reducer/chatWindowReducer";
+
+import {
+  isTyping,
+  isLoading,
+  addCurrUserChats,
+} from "../Reducer/chatWindowReducer";
 
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
-import { updateChats} from "../Reducer/chatWindowReducer";
+import { updateChats } from "../Reducer/chatWindowReducer";
 
 // this is a typing area where we type and chat with AI
 export const TrypingArea = () => {
@@ -22,14 +26,14 @@ export const TrypingArea = () => {
   const chattingWith = useSelector((state) => state.contactClicked);
 
   // these are the chats of all the contacts
-  const chats = useSelector((state)=>state.chats)
+  const chats = useSelector((state) => state.chats);
 
   // current user chat
-  const currChats = useSelector((state)=>state.chatofCurrentContact)
+  const currChats = useSelector((state) => state.chatofCurrentContact);
 
   // these are chats of current user
   // const curruserChats = chats[chattingWith.name];
-  console.log("current user chats",currChats);
+  console.log("current user chats", currChats);
   const dispatch = useDispatch();
   const handleInputChange = (e) => {
     const newText = e.target.value;
@@ -42,40 +46,47 @@ export const TrypingArea = () => {
       // after api call finished we will again set loading false
       console.log("fetching...");
       // prompt for AI call
-        const option = chattingWith.option;
-        // option.messages.push({role:"user",content:text})
-        console.log(option);
-        // const res = AICALL(option);
-
-
-        // this is the Ai response which we will send to our user 
-        const currUserChat ={name:chattingWith.name,data:"res",id:chattingWith.id};
-
-        // updating currUserChats and Chats data
-        dispatch(updateChats(currUserChat)) 
-        dispatch(addCurrUserChats(currUserChat))
+      const option = chattingWith.option;
+      // option.messages.push({role:"user",content:text})
+      console.log(option);
+      // const res = AICALL(option);
 
       
+      const currentDate = new Date();
+
+      // this is the Ai response which we will send to our user
+      const currUserChat = { name: chattingWith.name, data: "demores", id: chattingWith.id,time:`${currentDate.getHours()}:${currentDate.getMinutes()}`,date:`${currentDate.getDate()}`,month:`${currentDate.getMonth()}`,year:`${currentDate.getFullYear()}`};
+      // updating currUserChats and Chats data
+      dispatch(updateChats(currUserChat));
+      dispatch(addCurrUserChats(currUserChat));
+
       dispatch(isLoading(false));
     }
-  }, [loading,text]);
+  }, [loading, text]);
 
   // when send button click
   const handleSend = () => {
-    const currUserChat ={name:"user",data:text,id:chattingWith.id};
-    console.log(currChats);
+    // Dates
+
+    const currentDate = new Date();
+
+    const dayOfWeek = currentDate.getDay(); // 0 (Sunday) through 6 (Saturday)
+
+    const currUserChat = { name: "user", data: text, id: chattingWith.id,time:`${currentDate.getHours()}:${currentDate.getMinutes()}`,date:`${currentDate.getDate()}`,month:`${currentDate.getMonth()}`,year:`${currentDate.getFullYear()}`};
+    console.log(currUserChat);
+
+    
     dispatch(updateChats(currUserChat));
     dispatch(addCurrUserChats(currUserChat));
     console.log(currChats);
 
     // making it empty after sending text in chat bar
     dispatch(isTyping(""));
-    
+
     dispatch(isLoading(true));
   };
 
   return (
-    
     <div className={styles.typing}>
       {console.log("rendered")}
       <div className="p-2 cursor-pointer">
@@ -88,8 +99,8 @@ export const TrypingArea = () => {
         className={styles.message}
         type="text"
         onChange={handleInputChange}
-        value={text.length !== 0 ? (text):("")}
-        placeholder= "Type a message"
+        value={text.length !== 0 ? text : ""}
+        placeholder="Type a message"
       ></input>
       <div className="p-2 cursor-pointer">
         {text.length === 0 ? (
@@ -105,7 +116,6 @@ export const TrypingArea = () => {
     </div>
   );
 };
-
 
 // async function AICALL(option){
 //   const openai = new OpenAI({

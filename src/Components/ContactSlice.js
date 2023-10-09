@@ -11,20 +11,78 @@ import {
   addCurrUserChats,
   removeAllChats,
 } from "../Reducer/chatWindowReducer";
+
+import { setAvailableStatus } from "../Reducer/statusReducer";
+
 import { useEffect } from "react";
 // this is a single contact slice on which we click to chat with that person
-export const ContactSlice = ({ contact,preview }) => {
+export const ContactSlice = ({ contact, preview, time, date, month, year }) => {
   const show = useSelector((state) => state.showNewChatOption);
 
   // currUser
   const user = useSelector((state) => state.contactClicked);
 
   const chats = useSelector((state) => state.chats);
+
+  const availableStatus = useSelector((state)=>state.availableStatus);
   const dispatch = useDispatch();
 
-  // useEffect(()=>{
 
-  // },[contact])
+  // adding status becasuse we show status of only those with whome we have talked
+  const id = contact.id;
+  const status = contact.status;
+  const statusToSend = { [id]: status,"id":id };
+
+  console.log("statusTosend",statusToSend);
+  if(chats.length>Object.keys(availableStatus).length){
+    console.log("statusTosend",statusToSend);
+    dispatch(setAvailableStatus(statusToSend));
+
+  }
+
+  console.log(preview);
+
+  // neeed curr date so that we know which date to render in contact slice instead of just 24:00 hrs format timinfg
+  const currDate = new Date();
+
+  // deciding suitable time to display for last message
+  let timeTodisplay = null;
+  if (
+    currDate.getFullYear() - year === 0 &&
+    currDate.getMonth() - month === 0
+  ) {
+    if (currDate.getDate() - date === 0) {
+      timeTodisplay = formatTime(time);
+      console.log(timeTodisplay);
+    } else {
+      timeTodisplay = date + "/" + month + "/" + year;
+      console.log(timeTodisplay);
+    }
+
+  }else{
+    timeTodisplay = date + "/" + month + "/" + year;
+    console.log(timeTodisplay);
+
+  }
+
+  // console.log(timeTodisplay);
+  function formatTime(time) {
+    let newTime = "";
+    const timeHelperArray = time.split(":");
+    for (let i = 0; i < timeHelperArray.length; i++) {
+      if (timeHelperArray[i].length < 2) {
+        newTime += 0 + timeHelperArray[i];
+      } else {
+        newTime += timeHelperArray[i];
+      }
+
+      if (newTime.length === 2) {
+        newTime += ":";
+      }
+    }
+
+    return newTime;
+  }
 
   const handleContactClick = (contact) => {
     console.log(contact);
@@ -87,31 +145,35 @@ export const ContactSlice = ({ contact,preview }) => {
       console.log("inside log ", index, " ", chats[index].chats);
 
       // Removing all chats otherwise it displays previous as well as current chats
-      dispatch(removeAllChats([]))
+      dispatch(removeAllChats([]));
 
-      
       const id = chats[index].id;
       const name = chats[index].name;
-      chats[index].chats.forEach((item,i) => {
+      chats[index].chats.forEach((item, i) => {
         let newObjforCurrchats = {}; //as schema of currChats and chats are different with each other so we need to do the necessary changes
         //{data:"",id:"",name:""}  schema of currchats
         newObjforCurrchats["id"] = id;
-        console.log(item," ",i);
-        if(i%2==0){
-          newObjforCurrchats["data"] = item.user
-        }else{
-
-          newObjforCurrchats["data"] = item[name]
-
+        console.log(item, " ", i);
+        if (i % 2 == 0) {
+          newObjforCurrchats["data"] = item.user;
+        } else {
+          newObjforCurrchats["data"] = item[name];
         }
-        
+
         newObjforCurrchats["name"] = contact.name;
+        newObjforCurrchats["time"] = item.time;
+        newObjforCurrchats["date"] = item.date;
+
         console.log(newObjforCurrchats);
         dispatch(addCurrUserChats(newObjforCurrchats));
       });
     }
     // dispatch(addCurrUserChats(chats[contact.id]));
   };
+
+
+
+
   return (
     <div
       className={`${styles.slice} w-full flex flex-row`}
@@ -129,26 +191,16 @@ export const ContactSlice = ({ contact,preview }) => {
           </div>
           {!show && (
             <div className={styles.time}>
-              <p>12:00</p>
+              <p>{timeTodisplay}</p>
             </div>
           )}
         </div>
 
         <div className="flex flex-row justify-between">
           <div className={styles.preview}>
-            {!show ? (
-              <p>
-                {preview}
-              </p>
-            ) : (
-              <p>{contact.about}</p>
-            )}
+            {!show ? <p>{preview}</p> : <p>{contact.about}</p>}
           </div>
-          {!show && (
-            <div className={styles.messageCount}>
-              <p>6</p>
-            </div>
-          )}
+          {!show && <div className={styles.messageCount}>{/* <p>1</p> */}</div>}
         </div>
       </div>
     </div>

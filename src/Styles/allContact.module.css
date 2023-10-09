@@ -1,0 +1,22 @@
+
+/* Heading section */
+.heading{
+    height: 6.8rem;
+    background-color: #202c33;
+    padding-bottom: 1rem;
+}
+
+.newChat{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* ii section after searchbar */
+.heading2{
+    height: 4rem;
+    border-top: 1px solid #202c33;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    color: #00a884;
+}

@@ -1,6 +1,7 @@
 import {configureStore, combineReducers} from "@reduxjs/toolkit";
-import { contactClickedSlice,newChatContainerSlice,showNewChatSlice } from "../Reducer/chatContainerReducer";
+import { contactClickedSlice,showNewChatSlice } from "../Reducer/chatContainerReducer";
 import { typingSlice,loadingSlice,chatsSlice,currUserChatsSlice } from "../Reducer/chatWindowReducer";
+import { statusClickedSlice,availableStatusSlice } from "../Reducer/statusReducer";
 
 
 // This is our store which store all our states
@@ -10,8 +11,10 @@ const rootReducer = combineReducers({
     loading:loadingSlice.reducer,
     chats:chatsSlice.reducer,
     chatofCurrentContact:currUserChatsSlice.reducer,
-    newChatContainer:newChatContainerSlice.reducer,
+    // newChatContainer:newChatContainerSlice.reducer,
     showNewChatOption:showNewChatSlice.reducer,
+    clickedStatus:statusClickedSlice.reducer,
+    availableStatus:availableStatusSlice.reducer,
 });
 
 export const store = configureStore({

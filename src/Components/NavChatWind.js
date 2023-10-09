@@ -16,24 +16,21 @@ import { useState } from "react";
 // this is a navbar of chat window which is present in right hand side of app it contains video call, search and menu options
 export const NavChatWind = ({ chatopen }) => {
   const loading = useSelector((state) => state.loading);
-  const [isTooltipVisible, setTooltipVisible] = useState(false);
+  // const [isTooltipVisible, setTooltipVisible] = useState(false);
+  const[profilePicToolTipVisible,setProfilePicTooltipVisible] = useState(false);
+  const[videoCallToolTipVisible,setVideoCallTooltipVisible] = useState(false);
+  const[searchToolTipVisible,setsearchTooltipVisible] = useState(false);
+  const[menuToolTipVisible,setMenuTooltipVisible] = useState(false);
 
-  const handleMouseEnter = (event) => {
-    setTooltipVisible(true);
-  };
 
-  const handleMouseLeave = () => {
-    setTooltipVisible(false);
-  };
   return (
     <div className={styles.contactOptionNav}>
       <div className="flex flex-row w-full justify-between">
         <div className="cursor-pointer flex flex-row">
           <div className={styles.dp}>
             <span
-              className="tooltip-trigger"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={()=>setProfilePicTooltipVisible(!profilePicToolTipVisible)}
+              onMouseLeave={()=>setProfilePicTooltipVisible(!profilePicToolTipVisible)}
             >
               {chatopen.profilePic === "" ? (
                 <User />
@@ -41,19 +38,10 @@ export const NavChatWind = ({ chatopen }) => {
                 <img src={chatopen.profilePic}></img>
               )}
             </span>
-            <Tooltip
-              // triggerElement={
-              //   <span className="tooltip-trigger">
-              //     {chatopen.profilePic === "" ? (
-              //       <User />
-              //     ) : (
-              //       <img src={chatopen.profilePic}></img>
-              //     )}
-              //   </span>
-              // }
+            {profilePicToolTipVisible && <Tooltip
               text="Profile detail"
-              isVisible={isTooltipVisible}
-            />
+              key="profilepic"
+            />}
           </div>
           <div className={`ml-4 ${!loading && "mt-2"} flex flex-col h-4`}>
             <div>{chatopen.name}</div>{" "}
@@ -65,62 +53,41 @@ export const NavChatWind = ({ chatopen }) => {
           <div className="m-2 cursor-pointer">
             <span
               className="tooltip-trigger"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={()=>setVideoCallTooltipVisible(!videoCallToolTipVisible)}
+              onMouseLeave={()=>setVideoCallTooltipVisible(!videoCallToolTipVisible)}
             >
               <VideoCall />
             </span>
-            <Tooltip
-              // triggerElement={
-              //   <span className="tooltip-trigger">
-              //     <VideoCall />
-              //   </span>
-              // }
+            {videoCallToolTipVisible && <Tooltip
               text="Get the app for calling"
               key="videcall"
-              isVisible={isTooltipVisible}
-            />
+            />}
           </div>
           <div className="m-2 ml-5 cursor-pointer">
             <span
               className="tooltip-trigger"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={()=>setsearchTooltipVisible(!searchToolTipVisible)}
+              onMouseLeave={()=>setsearchTooltipVisible(!searchToolTipVisible)}
             >
               <SearchIcon2 />
             </span>
-            <Tooltip
-              // triggerElement={
-              //   <span className="tooltip-trigger">
-              //     <SearchIcon2 />
-              //   </span>
-              // }
+            {searchToolTipVisible && <Tooltip
               text="Search"
               key="search"
-              isVisible={isTooltipVisible}
-            />
+            />}
           </div>
           <div className="m-2 ml-5 cursor-pointer">
             <span
               className="tooltip-trigger"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={()=>setMenuTooltipVisible(!menuToolTipVisible)}
+              onMouseLeave={()=>setMenuTooltipVisible(!menuToolTipVisible)}
             >
               <Menu />
             </span>
-            <Tooltip
-              // triggerElement={
-              //   <span
-              //     className="tooltip-trigger"
-                 
-              //   >
-              //     <Menu />
-              //   </span>
-              // }
+            {menuToolTipVisible && <Tooltip
               text="Menu"
               key="menu"
-              isVisible={isTooltipVisible}
-            />
+            />}
           </div>
         </div>
       </div>

@@ -1,0 +1,27 @@
+.statusScroll{
+    width: 100%;
+    overflow-x: scroll;
+    justify-content: center;
+}
+
+.statusScroll::-webkit-scrollbar{
+    display: none;
+}
+
+.statusWraper{
+    height: 40vw;
+    width: 40vw;
+    min-width: 30rem;
+    min-height: 30rem;
+}
+
+.statusWraper img{
+    height: 100%;
+    width: 100%;
+} 
+
+.cancel{
+   display: flex;
+   justify-content: right;
+   margin-right: 30px;
+}

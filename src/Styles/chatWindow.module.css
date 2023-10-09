@@ -120,3 +120,14 @@
 
 
 
+/* messages styling */
+.message{
+  display: flex;
+  flex-direction: column;
+}
+
+.time{
+  font-size: 10px;
+  margin-left: 20px;
+  text-align: right;
+}
