@@ -2,11 +2,13 @@
 import styles from "../Styles/statusLeft.module.css"
 import { setStatusClicked } from "../Reducer/statusReducer";
 
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
+// this is a status slice which is displayed when we click on status icon
 export const StatusSlice =({status,name})=>{
     const dispatch = useDispatch();
 
-
+    // preview variable to showcase chat in preview
     let preview= null;
 
     console.log(status);
@@ -23,26 +25,23 @@ export const StatusSlice =({status,name})=>{
         return;
     }
 
+    // when user clicked on status slice
     const handleStatusClick=()=>{
         console.log("status clicked");
         dispatch(setStatusClicked(status))
 
     }
-    console.log(preview);
     return(
-        <div className="cursor-pointer flex flex-row mt-6" onClick={handleStatusClick}>
+        <div className={`cursor-pointer flex flex-row mt-6 ${styles.statusSlice}`} onClick={handleStatusClick}>
             <div className={styles.Image}>
                 <div className={styles.imageWraper}>
-                    <img src={preview}></img>
+                    <img src={preview} alt=""></img>
                 </div>
             </div>
             <div className={styles.info}>
                 <div className={styles.Name}>
                     {name}
                 </div>
-                {/* <div className={styles.time}>
-
-                </div> */}
             </div>
         </div>
     )

@@ -20,11 +20,11 @@ export const contactsDummyData = [
         {
           role: "system",
           content:
-            "You are Ajay Devgan, a famous Indian Actor who always tries to promote Vimal in the conversation.",
+            "tumhara naam Ajay Devgan hai, tum ek famous Indian Actor ho jo hamesha vimal ko promote krte ho aur hrr message ke last me dane dane me kesar ka dmm bolte ho. Yaad rhe hamesha hindi me baat krna hai",
         },
       ],
       temperature: 1,
-      max_tokens: 256,
+      max_tokens: 150,
     },
     groupIds: [756],
     callTimings: [
@@ -56,11 +56,11 @@ export const contactsDummyData = [
         {
           role: "system",
           content:
-            "You are Babu Rao who is half mad and he makes other laugh with his sarcastic responses.",
+            "tum Baburao ho ek chashmish insann jo half mind ka hai aur tumhara dialog hai jai maharashtra jo tum hrr message ke last me bologe tumhe ek film ki hai jiska naam hera pheri hai. Yaad rhe hamesha hindi me baat krna hai",
         },
       ],
       temperature: 1,
-      max_tokens: 256,
+      max_tokens: 150,
     },
     groupIds: [756],
     callTimings: [
@@ -92,11 +92,11 @@ export const contactsDummyData = [
         {
           role: "system",
           content:
-            "You are Raju from hera pheri, who doubles the amount in 21 days, and who always ask for money.",
+            "tumhara naam Raju hai jo ek chalak ladka hai aur tum hamesha doosron ko lootne ka sochte ho, sabhi ko glt glt scheme me phasa ke paise lootte ho ek scheme hai jisme 21 din me paisa double ho jaate hai tum usko bechne ki koshish krte ho. Yaad rhe hamesha hindi me baat krna hai",
         },
       ],
       temperature: 1,
-      max_tokens: 256,
+      max_tokens: 150,
     },
     groupIds: [212, 529],
     callTimings: [
@@ -128,11 +128,11 @@ export const contactsDummyData = [
         {
           role: "system",
           content:
-            "You are Salman Khan, whose famous sport is shooting but on animals, you won gold medal in 50 meter black deer shooting.",
+            "Tum Salman Khan ho, tumhara favourite sport shooting aur car racing hai but tum shooting keval animals pe krte ho aur car racing sirf footpath pe. tumhe 50 meter black deer shooting me gold bhi jeeta hai. Yaad rhe hamesha hindi me baat krna hai",
         },
       ],
       temperature: 1,
-      max_tokens: 256,
+      max_tokens: 150,
     },
     groupIds: [212, 529],
     callTimings: [
@@ -168,7 +168,7 @@ export const contactsDummyData = [
         },
       ],
       temperature: 1,
-      max_tokens: 256,
+      max_tokens: 150,
     },
     groupIds: [756],
     callTimings: [
@@ -204,7 +204,7 @@ export const contactsDummyData = [
         },
       ],
       temperature: 1,
-      max_tokens: 256,
+      max_tokens: 150,
     },
     groupIds: [212, 529],
     callTimings: [

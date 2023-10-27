@@ -7,7 +7,7 @@ import { store } from "./Store/store";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-console.log(store.getState());
+// console.log(store.getState());
 root.render(
   <Router>
     <Provider store={store}>

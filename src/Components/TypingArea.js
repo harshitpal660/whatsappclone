@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 import { updateChats } from "../Reducer/chatWindowReducer";
+import { AICALL } from "../Utils/AICalls";
 
 // this is a typing area where we type and chat with AI
 export const TrypingArea = () => {
@@ -31,9 +32,11 @@ export const TrypingArea = () => {
   // current user chat
   const currChats = useSelector((state) => state.chatofCurrentContact);
 
+  const option = JSON.parse(JSON.stringify(chattingWith.option));
+
   // these are chats of current user
   // const curruserChats = chats[chattingWith.name];
-  console.log("current user chats", currChats);
+  // console.log("current user chats", currChats);
   const dispatch = useDispatch();
   const handleInputChange = (e) => {
     const newText = e.target.value;
@@ -41,47 +44,60 @@ export const TrypingArea = () => {
   };
 
   useEffect(() => {
-    // here we will call open ai api
+    const fetchData = async () => {
+      // console.log("fetching...");
+      dispatch(isTyping(""));
+      const userChat = { role: "user", content: text };
+      option.messages.push(userChat);
+
+      try {
+        const AIRes = await AICALL(option);
+
+        const currentDate = new Date();
+        const currUserChat = {
+          name: chattingWith.name,
+          data: AIRes,
+          id: chattingWith.id,
+          time: `${currentDate.getHours()}:${currentDate.getMinutes()}`,
+          date: `${currentDate.getDate()}`,
+          month: `${currentDate.getMonth()}`,
+          year: `${currentDate.getFullYear()}`,
+        };
+
+        dispatch(updateChats(currUserChat));
+        dispatch(addCurrUserChats(currUserChat));
+        dispatch(isLoading(false));
+      } catch (error) {
+        console.error("Error fetching AI response:", error);
+      }
+    };
     if (loading) {
-      // after api call finished we will again set loading false
-      console.log("fetching...");
-      // prompt for AI call
-      const option = chattingWith.option;
-      // option.messages.push({role:"user",content:text})
-      console.log(option);
-      // const res = AICALL(option);
-
-      
-      const currentDate = new Date();
-
-      // this is the Ai response which we will send to our user
-      const currUserChat = { name: chattingWith.name, data: "demores", id: chattingWith.id,time:`${currentDate.getHours()}:${currentDate.getMinutes()}`,date:`${currentDate.getDate()}`,month:`${currentDate.getMonth()}`,year:`${currentDate.getFullYear()}`};
-      // updating currUserChats and Chats data
-      dispatch(updateChats(currUserChat));
-      dispatch(addCurrUserChats(currUserChat));
-
-      dispatch(isLoading(false));
+      fetchData();
     }
-  }, [loading, text]);
+  }, [loading,currChats]);  //[loading,text,currChats]
 
   // when send button click
   const handleSend = () => {
     // Dates
 
     const currentDate = new Date();
-
-    const dayOfWeek = currentDate.getDay(); // 0 (Sunday) through 6 (Saturday)
-
-    const currUserChat = { name: "user", data: text, id: chattingWith.id,time:`${currentDate.getHours()}:${currentDate.getMinutes()}`,date:`${currentDate.getDate()}`,month:`${currentDate.getMonth()}`,year:`${currentDate.getFullYear()}`};
+    const currUserChat = {
+      name: "user",
+      data: text,
+      id: chattingWith.id,
+      time: `${currentDate.getHours()}:${currentDate.getMinutes()}`,
+      date: `${currentDate.getDate()}`,
+      month: `${currentDate.getMonth()}`,
+      year: `${currentDate.getFullYear()}`,
+    };
     console.log(currUserChat);
 
-    
-    dispatch(updateChats(currUserChat));
     dispatch(addCurrUserChats(currUserChat));
+    dispatch(updateChats(currUserChat));
     console.log(currChats);
 
-    // making it empty after sending text in chat bar
-    dispatch(isTyping(""));
+    // // making it empty after sending text in chat bar
+    // dispatch(isTyping(""));
 
     dispatch(isLoading(true));
   };

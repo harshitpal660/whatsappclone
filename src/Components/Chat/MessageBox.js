@@ -1,8 +1,7 @@
-import { useSelector } from "react-redux/es/hooks/useSelector";
 import styles from "../../Styles/chatWindow.module.css";
 
 
-// this is a boiler plate code for different types of messages
+// this is a boiler plate code for messages
 export const SendersTextMessage = ({ item }) => {
   // const text = useSelector((state)=>state.demo)
   console.log(item);
@@ -14,6 +13,3 @@ export const SendersTextMessage = ({ item }) => {
   );
 };
 
-export const SendersLinkPhotos = ({ message }) => {
-  return <div>message</div>;
-};

@@ -1,26 +1,20 @@
 import { contactsDummyData } from "../dummyData/contacts";
 import { ContactSlice } from "./ContactSlice";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 // this a container which contain all the contact slice with which we had a conversation atleast once
-export const ContactContainer = () => {
-  const dispatch = useDispatch();
+export const ContactContainer = ({name}) => {
   // these are the chats of all the contacts
   const chats = useSelector((state) => state.chats);
   // const contacts = contactsDummyData.reverse();
 
   let preview = {};
-  console.log("chats ", chats);
   chats.forEach((element) => {
     if (element["chats"].length > 0) {
       const chatsLength = element.chats.length;
       const targetMessageForPreview = element.chats[chatsLength - 1];
 
-      // here we need to debugs
-
-      // preview[element.id] ={};
-      // preview[element.id] = targetMessageForPreview[element.name];
       const currChatReview = {};
       currChatReview["time"] = targetMessageForPreview.time;
       currChatReview["date"] = targetMessageForPreview.date;
@@ -32,14 +26,19 @@ export const ContactContainer = () => {
     }
   });
 
-
-  console.log("preview", preview);
+  useEffect(()=>{
+    console.log("name", name);
+  },[name])
 
   return (
     <div className="flex flex-col h-full overflow-y-scroll">
       {contactsDummyData.map(
-        (item) =>
-          preview.hasOwnProperty(item.id) && (
+        (item) =>{
+          console.log(preview.hasOwnProperty(item.id) && (item.name===name || name==="" || name==="name not found"));
+          console.log(item.name===name || name==="" || name==="Name not found");
+          console.log(item.name);
+          console.log(name);
+          return (preview.hasOwnProperty(item.id) && (item.name===name || name==="" || name==="Name not found")) && (
             <ContactSlice
               contact={item}
               key={item.id}
@@ -50,6 +49,11 @@ export const ContactContainer = () => {
               year={preview[item.id].year}
             />
           )
+        }
+        
+        
+      
+          
       )}
     </div>
   );

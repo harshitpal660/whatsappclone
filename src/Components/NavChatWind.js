@@ -1,10 +1,6 @@
 import {
   Menu,
-  Status,
-  Channels,
-  NewChat,
   User,
-  Communities,
   SearchIcon2,
   VideoCall,
 } from "./iconstorage";
@@ -16,7 +12,6 @@ import { useState } from "react";
 // this is a navbar of chat window which is present in right hand side of app it contains video call, search and menu options
 export const NavChatWind = ({ chatopen }) => {
   const loading = useSelector((state) => state.loading);
-  // const [isTooltipVisible, setTooltipVisible] = useState(false);
   const[profilePicToolTipVisible,setProfilePicTooltipVisible] = useState(false);
   const[videoCallToolTipVisible,setVideoCallTooltipVisible] = useState(false);
   const[searchToolTipVisible,setsearchTooltipVisible] = useState(false);
@@ -35,12 +30,13 @@ export const NavChatWind = ({ chatopen }) => {
               {chatopen.profilePic === "" ? (
                 <User />
               ) : (
-                <img src={chatopen.profilePic}></img>
+                <img src={chatopen.profilePic} alt=""></img>
               )}
             </span>
             {profilePicToolTipVisible && <Tooltip
               text="Profile detail"
               key="profilepic"
+              readOnly
             />}
           </div>
           <div className={`ml-4 ${!loading && "mt-2"} flex flex-col h-4`}>
@@ -61,6 +57,7 @@ export const NavChatWind = ({ chatopen }) => {
             {videoCallToolTipVisible && <Tooltip
               text="Get the app for calling"
               key="videcall"
+              readOnly
             />}
           </div>
           <div className="m-2 ml-5 cursor-pointer">
@@ -74,6 +71,7 @@ export const NavChatWind = ({ chatopen }) => {
             {searchToolTipVisible && <Tooltip
               text="Search"
               key="search"
+              readOnly
             />}
           </div>
           <div className="m-2 ml-5 cursor-pointer">
@@ -87,6 +85,7 @@ export const NavChatWind = ({ chatopen }) => {
             {menuToolTipVisible && <Tooltip
               text="Menu"
               key="menu"
+              readOnly
             />}
           </div>
         </div>

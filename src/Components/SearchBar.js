@@ -2,8 +2,16 @@ import { UnreadFilter,Archives,SearchIcon } from "./iconstorage"
 import styles from "../Styles/searchBar.module.css"
 
 // this a search bar where we search different chat options or contacts
-export const SearchBar=()=>{
-    return(
+export const SearchBar=({setSearchName,searchName,getSearchedContacts})=>{
+
+    const searchNamehelper=(searchName)=>{
+        console.log(searchName);
+
+        getSearchedContacts(searchName);
+    }
+
+    
+    return( 
         <div className="flex flex-col cursor-pointer w-full">
             <div className="p-2  ml-5">
                 <div className={styles.top}>
@@ -11,7 +19,7 @@ export const SearchBar=()=>{
                         <SearchIcon/>
                     </div>
                     <div className={styles.searchBar}>
-                        <input type="text" className={styles.inputTag} placeholder="Search or start new chat"></input>
+                        <input type="text" className={styles.inputTag} text={(e)=>setSearchName(e.target.value)} onChange={(e)=>searchNamehelper(e.target.value)}></input>
                     </div>
                     <div className={styles.unreadFilter}><UnreadFilter/></div>
                 </div>

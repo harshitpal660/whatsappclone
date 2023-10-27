@@ -28,6 +28,11 @@
     overflow-x: scroll;
 }
 
+/* status slice */
+.statusSlice:hover{
+    background-color: #3a3b3c;
+}
+
 
 .noUpdates{
     color: #6a7175;

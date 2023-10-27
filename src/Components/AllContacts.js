@@ -8,16 +8,20 @@ import { setShowNewChat } from "../Reducer/chatContainerReducer";
 import stylesAllContact from "../Styles/allContact.module.css";
 import stylesSearchBar from "../Styles//searchBar.module.css";
 
-// this component gets render when user click new chat option
-export const AllContacts = () => {
+// this component gets render when user click new chat option it contains all the contacts which we have
+export const AllContacts = ({setSearchName,getSearchedContacts,name}) => {
   const dispatch = useDispatch();
-  const newChatOptions = useSelector((state) => state.showNewChatOption);
+  // const newChatOptions = useSelector((state) => state.showNewChatOption);
   const show = useSelector((state) => state.showNewChatOption);
 
   const handleBack = () => {
     console.log("back");
     dispatch(setShowNewChat(!show));
   };
+  const searchNamehelper=(searchName)=>{
+    console.log(searchName);
+    getSearchedContacts(searchName);
+}
   return (
     <div
       className={`flex flex-col h-full ${stylesAllContact.allContact}`}
@@ -46,6 +50,8 @@ export const AllContacts = () => {
             type="text"
             className={stylesSearchBar.inputTag}
             placeholder="Search name or number"
+            text={(e)=>setSearchName(e.target.value)} 
+            onChange={(e)=>searchNamehelper(e.target.value)}
           ></input>
         </div>
       </div>
@@ -58,7 +64,7 @@ export const AllContacts = () => {
       {/* All Contacts Slice */}
       <div className="flex-1 overflow-auto">
         {contactsDummyData.map((item) => (
-          <ContactSlice contact={item} key={item.id} />
+          (item.name===name || name==="" || name==="Name not found") && <ContactSlice contact={item} key={item.id} />
         ))}
       </div>
     </div>

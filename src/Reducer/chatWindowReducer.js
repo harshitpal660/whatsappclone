@@ -4,10 +4,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const localStorageKey = "chats";
 // localStorage.removeItem(localStorageKey)
+
+// I am using local storage to make data persist
 if (!localStorage.getItem(localStorageKey)) {
   localStorage.setItem(localStorageKey, JSON.stringify([]));
 }
 
+// typing stores the message which we type while we chat
+// loading tells that opposite user/AI is processing your message
+// chatofCurrentContact gives the info about the chats of the user which is opened in right side window
+// chats contains the chats of all the users 
 const initialState = {
   typing: "",
   loading: false,

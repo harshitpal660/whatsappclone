@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 
 import { Navigate } from "react-router-dom";
 
+// left side of status page
 export const Left = () => {
   console.log(contactsDummyData);
   const status = useSelector((state) => state.availableStatus);
@@ -23,6 +24,8 @@ export const Left = () => {
 
 
   return (
+
+    // user slice
     <div className="p-6 flex flex-col">
       <div className={`mt-6`}>
         <div className={`flex flex-row pb-8 ${styles.leftTop}`}>
@@ -38,6 +41,7 @@ export const Left = () => {
         </div>
       </div>
 
+      {/* others status */}
       <div className="flex-1 h-full">
         <div className={styles.recentHeading}>RECENT</div>
 
@@ -47,6 +51,8 @@ export const Left = () => {
           ))}
         </div>
       </div>
+
+      {/* encryption message */}
       <div className="flex flex-row mt-6">
           <div>
             <LockIcon/>

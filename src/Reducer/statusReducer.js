@@ -2,6 +2,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 
+// available status tells all the contacts which have some status and we chat with them at some point in time
 const initialState = {
   availableStatus:{},
   statusClicked: {},

@@ -19,20 +19,23 @@ export const ChatWindow = () => {
 
   const keysOfCurrChat = Object.keys(chatsOfCurrentUser);
 
-  console.log(chatsOfCurrentUser, chatsOfCurrentUser.length);
+  // console.log(chatsOfCurrentUser, chatsOfCurrentUser.length);
   useEffect(() => {
     console.log("inside chat window");
+    console.log(chatsOfCurrentUser);
   }, [chatsOfCurrentUser]);
 
   return (
     <>
+
+    {/* if user had some prevoius chats */}
       {keysOfUser !== 0 && (
         <>
           <NavChatWind chatopen={user} />
           <div
             className={`h-full ${styles.chatWrapper}`}
           >
-           {keysOfCurrChat !=0 && <div className={styles.chatContainer}>
+           {keysOfCurrChat !==0 && <div className={styles.chatContainer}>
             {chatsOfCurrentUser.length > 0 &&
               chatsOfCurrentUser.map((item) => {
                 return <SendersTextMessage item={item} />;
@@ -43,11 +46,13 @@ export const ChatWindow = () => {
           <TrypingArea />
         </>
       )}
+
+      {/* if we clicked on user for the first time */}
       {keysOfUser === 0 && (
         <div className={`${styles.chatWindow} h-full overflow-y-scroll`}>
           <div className={styles.flexdiv}>
             <div className={styles.defaultImgWrapper}>
-              <img src={DefaultChatWindowIMG}></img>
+              <img src={DefaultChatWindowIMG} alt=""></img>
             </div>
             <div className={styles.largeText}>
               <p>Download WhatsApp for Windows</p>

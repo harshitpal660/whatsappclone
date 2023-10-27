@@ -9,7 +9,6 @@ import {
 } from "./iconstorage";
 import styles from "../Styles/navChatCont.module.css";
 
-import { contactsDummyData } from "../dummyData/contacts";
 import { useState } from "react";
 
 import Tooltip from "./ToolTip";
@@ -31,20 +30,23 @@ export const NavChatCont = () => {
   const[newChatToolTipVisible,setnewChatToolTipVisible] = useState(false);
   const[menuToolTipVisible,setMenuToolTipVisible] = useState(false);
 
+  // when new chat option is clicked
   const openNewChatOptions =()=>{
     dispatch(setShowNewChat(!show));
   }
 
-  const handleStausPageClicked=(contactsDummyData)=>{
-    // dispatch(setStatus(contactsDummyData));
-  }
+  // navbar of Chat Container or left side of the main page
   return (
     <div className={styles.contactOptionNav}>
       <div className="flex flex-row w-full justify-between">
+
+        {/* User icon */}
         <div className="cursor-pointer">
             <User />
         </div>
         <div className="flex flex-row mr-4">
+
+          {/* Communities icon */}
           <div className="m-2 cursor-pointer">
           <span 
             onMouseEnter={()=>setCommunityToolTipVisible(!communityToolTipVisible)}
@@ -57,12 +59,14 @@ export const NavChatCont = () => {
               key="community"
             />}
           </div>
+
+          {/* Status icon */}
           <div className="m-2 ml-5 cursor-pointer">
           <span 
             onMouseEnter={()=>setStatusToolTipVisible(!statusToolTipVisible)}
             onMouseLeave={()=>setStatusToolTipVisible(!statusToolTipVisible)}
           >
-            <Link to={`/status`} onClick={()=>handleStausPageClicked(contactsDummyData)}>
+            <Link to={`/status`}>
               <Status />
             </Link>
             
@@ -72,6 +76,8 @@ export const NavChatCont = () => {
               key="status"
             />}
           </div>
+
+          {/* Channels icon */}
           <div className="m-2 ml-5 cursor-pointer">
           <span 
             onMouseEnter={()=>setChannelToolTipVisible(!channelToolTipVisible)}
@@ -84,6 +90,8 @@ export const NavChatCont = () => {
               key="channel"
             />}
           </div>
+
+          {/* NewChat icon */}
           <div className="m-2 ml-5 cursor-pointer" onClick={openNewChatOptions}>
           <span 
             onMouseEnter={()=>setnewChatToolTipVisible(!newChatToolTipVisible)}
@@ -96,6 +104,8 @@ export const NavChatCont = () => {
               key="new chat"
             />}
           </div>
+
+          {/* Menu icon */}
           <div className="m-2 ml-5 cursor-pointer">
           <span 
             onMouseEnter={()=>setMenuToolTipVisible(!menuToolTipVisible)}

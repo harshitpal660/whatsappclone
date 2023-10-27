@@ -33,14 +33,14 @@ export const ContactSlice = ({ contact, preview, time, date, month, year }) => {
   const status = contact.status;
   const statusToSend = { [id]: status,"id":id };
 
-  console.log("statusTosend",statusToSend);
+  // console.log("statusTosend",statusToSend);
   if(chats.length>Object.keys(availableStatus).length){
-    console.log("statusTosend",statusToSend);
+    // console.log("statusTosend",statusToSend);
     dispatch(setAvailableStatus(statusToSend));
 
   }
 
-  console.log(preview);
+  // console.log(preview);
 
   // neeed curr date so that we know which date to render in contact slice instead of just 24:00 hrs format timinfg
   const currDate = new Date();
@@ -53,15 +53,15 @@ export const ContactSlice = ({ contact, preview, time, date, month, year }) => {
   ) {
     if (currDate.getDate() - date === 0) {
       timeTodisplay = formatTime(time);
-      console.log(timeTodisplay);
+      // console.log(timeTodisplay);
     } else {
       timeTodisplay = date + "/" + month + "/" + year;
-      console.log(timeTodisplay);
+      // console.log(timeTodisplay);
     }
 
   }else{
     timeTodisplay = date + "/" + month + "/" + year;
-    console.log(timeTodisplay);
+    // console.log(timeTodisplay);
 
   }
 
@@ -85,7 +85,7 @@ export const ContactSlice = ({ contact, preview, time, date, month, year }) => {
   }
 
   const handleContactClick = (contact) => {
-    console.log(contact);
+    // console.log(contact);
     // console.log(Object.keys(chats).length===0 || !chats.hasOwnProperty(contact.id));
 
     // find whether chats array contain the chat of currently clicked user or not
@@ -93,21 +93,21 @@ export const ContactSlice = ({ contact, preview, time, date, month, year }) => {
     let contains = false;
     chats.forEach((item, i) => {
       if (item.id === contact.id) {
-        console.log("index ", i);
+        // console.log("index ", i);
         index = i;
         contains = true;
       }
     });
-    console.log(Object.keys(chats).length === 0 || !contains);
-    console.log(
-      "Object.keys(chats).length===0 ",
-      Object.keys(chats).length === 0
-    ); //chat is a array not object
-    console.log(
-      "!chats.hasOwnProperty(contact.id) ",
-      !chats.hasOwnProperty(contact.id)
-    );
-    console.log("!contains ", !contains);
+    // console.log(Object.keys(chats).length === 0 || !contains);
+    // console.log(
+    //   "Object.keys(chats).length===0 ",
+    //   Object.keys(chats).length === 0
+    // ); //chat is a array not object
+    // console.log(
+    //   "!chats.hasOwnProperty(contact.id) ",
+    //   !chats.hasOwnProperty(contact.id)
+    // );
+    // console.log("!contains ", !contains);
     // setting the current contact which gets clicked by the user
     dispatch(setContactClicked(contact));
 
@@ -119,15 +119,15 @@ export const ContactSlice = ({ contact, preview, time, date, month, year }) => {
     // when we change user to chat we must always remember to set currChats as empty array if user is new and not already present in chat array
     // or set currchats with previous chats of user if his data is present in chats data
     if (user.id != contact.id && !contains) {
-      console.log(user.id, " ", contact.id);
-      console.log(
-        "user.id != contact.id && !contains",
-        user.id != contact.id && !contains
-      );
+      // console.log(user.id, " ", contact.id);
+      // console.log(
+      //   "user.id != contact.id && !contains",
+      //   user.id != contact.id && !contains
+      // );
       dispatch(removeAllChats([]));
     } else if (user.id != contact.id && contains) {
-      console.log("inside log ", index, " ", chats[index].chats);
-      console.log(chats[index].chats);
+      // console.log("inside log ", index, " ", chats[index].chats);
+      // console.log(chats[index].chats);
       dispatch(addCurrUserChats(chats[index].chats));
     }
 
@@ -142,7 +142,7 @@ export const ContactSlice = ({ contact, preview, time, date, month, year }) => {
 
       return;
     } else {
-      console.log("inside log ", index, " ", chats[index].chats);
+      // console.log("inside log ", index, " ", chats[index].chats);
 
       // Removing all chats otherwise it displays previous as well as current chats
       dispatch(removeAllChats([]));
@@ -153,7 +153,7 @@ export const ContactSlice = ({ contact, preview, time, date, month, year }) => {
         let newObjforCurrchats = {}; //as schema of currChats and chats are different with each other so we need to do the necessary changes
         //{data:"",id:"",name:""}  schema of currchats
         newObjforCurrchats["id"] = id;
-        console.log(item, " ", i);
+        // console.log(item, " ", i);
         if (i % 2 == 0) {
           newObjforCurrchats["data"] = item.user;
         } else {
@@ -164,7 +164,7 @@ export const ContactSlice = ({ contact, preview, time, date, month, year }) => {
         newObjforCurrchats["time"] = item.time;
         newObjforCurrchats["date"] = item.date;
 
-        console.log(newObjforCurrchats);
+        // console.log(newObjforCurrchats);
         dispatch(addCurrUserChats(newObjforCurrchats));
       });
     }
