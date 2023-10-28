@@ -14,7 +14,7 @@ export const Left = () => {
   // this function will return search result from the contact list
   const getSearchedContacts = (searchNameString) => {
     console.log(searchNameString);
-    const result = contactsDummyData.find(item => item.name === searchNameString);
+    const result = contactsDummyData.find(item => item.name.toLowerCase() === searchNameString.toLowerCase());
     if(result===undefined){
       console.log("if");
       setSearchName( "Name not found")
@@ -37,7 +37,7 @@ export const Left = () => {
       {/* here contacts from with we have a conversation that displays here */}
       {!show && (
         <>
-          <NavChatCont />{" "}
+          <NavChatCont setSearchName={setSearchName}/>{" "}
           <SearchBar
             setSearchName={setSearchName}
             searchName={searchName}

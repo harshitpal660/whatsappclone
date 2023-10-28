@@ -34,10 +34,10 @@ export const ContactContainer = ({name}) => {
     <div className="flex flex-col h-full overflow-y-scroll">
       {contactsDummyData.map(
         (item) =>{
-          console.log(preview.hasOwnProperty(item.id) && (item.name===name || name==="" || name==="name not found"));
-          console.log(item.name===name || name==="" || name==="Name not found");
-          console.log(item.name);
-          console.log(name);
+          // console.log(preview.hasOwnProperty(item.id) && (item.name===name || name==="" || name==="name not found"));
+          // console.log(item.name===name || name==="" || name==="Name not found");
+          // console.log(item.name);
+          // console.log(name);
           return (preview.hasOwnProperty(item.id) && (item.name===name || name==="" || name==="Name not found")) && (
             <ContactSlice
               contact={item}

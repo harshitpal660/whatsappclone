@@ -19,7 +19,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 // this is a navbar of chat constainer which is present in left hand side of app 
-export const NavChatCont = () => {
+export const NavChatCont = ({setSearchName}) => {
   const dispatch = useDispatch();
   const  show = useSelector((state)=>state.showNewChatOption);
 
@@ -32,9 +32,12 @@ export const NavChatCont = () => {
 
   // when new chat option is clicked
   const openNewChatOptions =()=>{
+    // setting search name empty string so that when we open new chat option it shows all availale chat option and not just the search value
+    setSearchName("")
     dispatch(setShowNewChat(!show));
   }
 
+  
   // navbar of Chat Container or left side of the main page
   return (
     <div className={styles.contactOptionNav}>

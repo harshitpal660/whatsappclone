@@ -20,10 +20,10 @@ export const ChatWindow = () => {
   const keysOfCurrChat = Object.keys(chatsOfCurrentUser);
 
   // console.log(chatsOfCurrentUser, chatsOfCurrentUser.length);
-  useEffect(() => {
-    console.log("inside chat window");
-    console.log(chatsOfCurrentUser);
-  }, [chatsOfCurrentUser]);
+  // useEffect(() => {
+  //   console.log("inside chat window");
+  //   console.log(chatsOfCurrentUser);
+  // }, [chatsOfCurrentUser]);
 
   return (
     <>

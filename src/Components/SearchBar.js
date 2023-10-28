@@ -1,6 +1,6 @@
 import { UnreadFilter,Archives,SearchIcon } from "./iconstorage"
 import styles from "../Styles/searchBar.module.css"
-
+import { useEffect } from "react"
 // this a search bar where we search different chat options or contacts
 export const SearchBar=({setSearchName,searchName,getSearchedContacts})=>{
 
@@ -10,6 +10,10 @@ export const SearchBar=({setSearchName,searchName,getSearchedContacts})=>{
         getSearchedContacts(searchName);
     }
 
+    // useEffect(()=>{
+    //     console.log("inside name", searchName);
+    // },[searchName])
+    
     
     return( 
         <div className="flex flex-col cursor-pointer w-full">

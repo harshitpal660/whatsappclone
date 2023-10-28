@@ -16,6 +16,8 @@ export const AllContacts = ({setSearchName,getSearchedContacts,name}) => {
 
   const handleBack = () => {
     console.log("back");
+    // setting search name empty string so that when we click back button it shows all availale chat option and not just the search value
+    setSearchName("")
     dispatch(setShowNewChat(!show));
   };
   const searchNamehelper=(searchName)=>{

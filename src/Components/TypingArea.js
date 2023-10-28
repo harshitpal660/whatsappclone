@@ -44,29 +44,54 @@ export const TrypingArea = () => {
   };
 
   useEffect(() => {
+    // we want to send message when enter button is clicked
+
+    document
+      .getElementById("myInput")
+      .addEventListener("keypress", handleKeyPress);
+
+    // if (loading) {
+    //   dispatch(isTyping(""));
+    // }
+    // // Cleanup the event listener when component unmounts
+    const inputElement = document.getElementById("myInput");
+    if (inputElement) {
+      inputElement.addEventListener("keypress", handleKeyPress);
+
+      return () => {
+        inputElement.removeEventListener("keypress", handleKeyPress);
+      };
+    }
+  }, [text]);
+  useEffect(() => {
     const fetchData = async () => {
       // console.log("fetching...");
-      dispatch(isTyping(""));
-      const userChat = { role: "user", content: text };
-      option.messages.push(userChat);
+      //
 
       try {
-        const AIRes = await AICALL(option);
+        const userChat = { role: "user", content: text };
+        option.messages.push(userChat);
+        console.log("heyyy");
+        console.log(currChats);
+        if (currChats[currChats.length - 1].name === "user") {
+          const AIRes = await AICALL(option);
 
-        const currentDate = new Date();
-        const currUserChat = {
-          name: chattingWith.name,
-          data: AIRes,
-          id: chattingWith.id,
-          time: `${currentDate.getHours()}:${currentDate.getMinutes()}`,
-          date: `${currentDate.getDate()}`,
-          month: `${currentDate.getMonth()}`,
-          year: `${currentDate.getFullYear()}`,
-        };
+          const currentDate = new Date();
+          const currUserChat = {
+            name: chattingWith.name,
+            data: AIRes,
+            id: chattingWith.id,
+            time: `${currentDate.getHours()}:${currentDate.getMinutes()}`,
+            date: `${currentDate.getDate()}`,
+            month: `${currentDate.getMonth()}`,
+            year: `${currentDate.getFullYear()}`,
+          };
 
-        dispatch(updateChats(currUserChat));
-        dispatch(addCurrUserChats(currUserChat));
-        dispatch(isLoading(false));
+          dispatch(updateChats(currUserChat));
+          dispatch(addCurrUserChats(currUserChat));
+
+          dispatch(isLoading(false));
+        }
       } catch (error) {
         console.error("Error fetching AI response:", error);
       }
@@ -74,25 +99,11 @@ export const TrypingArea = () => {
     if (loading) {
       fetchData();
     }
-
-    // we want to send message when enter button is clicked
-    document
-      .getElementById("myInput")
-      .addEventListener("keypress", handleKeyPress);
-
-    // Cleanup the event listener when component unmounts
-    return () => {
-      document
-        .getElementById("myInput")
-        .removeEventListener("keypress", handleKeyPress);
-    };
-  }, [loading, currChats,text]); //[loading,text,currChats]
-
-
+  }, [loading, currChats]); //[loading,text,currChats]
 
   // when enter button clicked
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter' && text !== "") {
+    if (event.key === "Enter" && text !== "") {
       handleSend();
     }
   };
@@ -101,6 +112,7 @@ export const TrypingArea = () => {
   const handleSend = () => {
     // Dates
 
+    dispatch(isTyping(""));
     const currentDate = new Date();
     const currUserChat = {
       name: "user",
@@ -116,10 +128,6 @@ export const TrypingArea = () => {
     dispatch(addCurrUserChats(currUserChat));
     dispatch(updateChats(currUserChat));
     console.log(currChats);
-
-    // // making it empty after sending text in chat bar
-    // dispatch(isTyping(""));
-
     dispatch(isLoading(true));
   };
 
