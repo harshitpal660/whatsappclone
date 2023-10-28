@@ -5,7 +5,7 @@ import styles from "../Styles/chatWindow.module.css";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { TrypingArea } from "./TypingArea";
 
-import { SendersTextMessage } from "./Chat/MessageBox";
+import { SendersTextMessage } from "./MessageBox";
 import { useEffect } from "react";
 
 // this is a chat window of our app present in right hand side where we chat

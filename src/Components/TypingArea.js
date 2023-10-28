@@ -1,6 +1,6 @@
 import { Mike, Emoji, Plus, Send } from "./iconstorage";
 import styles from "../Styles/typing.module.css";
-import OpenAI from "openai";
+// import OpenAI from "openai";
 
 import {
   isTyping,
@@ -27,7 +27,7 @@ export const TrypingArea = () => {
   const chattingWith = useSelector((state) => state.contactClicked);
 
   // these are the chats of all the contacts
-  const chats = useSelector((state) => state.chats);
+  // const chats = useSelector((state) => state.chats);
 
   // current user chat
   const currChats = useSelector((state) => state.chatofCurrentContact);
@@ -74,7 +74,28 @@ export const TrypingArea = () => {
     if (loading) {
       fetchData();
     }
-  }, [loading,currChats]);  //[loading,text,currChats]
+
+    // we want to send message when enter button is clicked
+    document
+      .getElementById("myInput")
+      .addEventListener("keypress", handleKeyPress);
+
+    // Cleanup the event listener when component unmounts
+    return () => {
+      document
+        .getElementById("myInput")
+        .removeEventListener("keypress", handleKeyPress);
+    };
+  }, [loading, currChats,text]); //[loading,text,currChats]
+
+
+
+  // when enter button clicked
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter' && text !== "") {
+      handleSend();
+    }
+  };
 
   // when send button click
   const handleSend = () => {
@@ -114,6 +135,7 @@ export const TrypingArea = () => {
       <input
         className={styles.message}
         type="text"
+        id="myInput"
         onChange={handleInputChange}
         value={text.length !== 0 ? text : ""}
         placeholder="Type a message"
@@ -132,12 +154,3 @@ export const TrypingArea = () => {
     </div>
   );
 };
-
-// async function AICALL(option){
-//   const openai = new OpenAI({
-//     apiKey: process.env.REACT_APP_Open_AI_Key
-//   });
-
-//   console.log(option);
-//   const chatCompletion = await openai.chat.completions.create(option);
-// }

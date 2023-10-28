@@ -3,7 +3,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const localStorageKey = "chats";
-// localStorage.removeItem(localStorageKey)
+localStorage.removeItem(localStorageKey)
 
 // I am using local storage to make data persist
 if (!localStorage.getItem(localStorageKey)) {

@@ -1,4 +1,4 @@
-import styles from "../../Styles/chatWindow.module.css";
+import styles from "../Styles/chatWindow.module.css";
 
 
 // this is a boiler plate code for messages
