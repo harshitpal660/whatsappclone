@@ -2,7 +2,7 @@ import OpenAI from "openai";
 
 
 export async function AICALL(option){
-    // console.log(process.env.REACT_APP_Chat);
+    console.log(process.env.REACT_APP_Chat);
     const openai = new OpenAI({
         apiKey: process.env.REACT_APP_Chat,
         dangerouslyAllowBrowser: true,
